@@ -5,6 +5,7 @@ import { useTrips } from '../context/TripContext';
 import { getPopularCities } from '../api/cities';
 import { getCuratedCityPhoto } from '../api/photos';
 import TripCard from '../components/TripCard';
+import { getFlagEmoji } from '../components/flagUtils';
 import {
   PlusCircle, Compass, Map, Briefcase, TrendingUp,
   ArrowRight, Sparkles, Calendar
@@ -51,7 +52,7 @@ export default function Dashboard() {
             <Sparkles size={20} className="hero-sparkle" />
             <span>{getGreeting()}</span>
           </div>
-          <h1>{user?.name || 'Traveler'} 👋</h1>
+          <h1>{user?.name || 'Traveler'}</h1>
           <p>Ready to plan your next adventure? Let's make it unforgettable.</p>
           <button
             className="btn btn-primary btn-lg"
@@ -61,7 +62,7 @@ export default function Dashboard() {
             <PlusCircle size={18} /> Plan New Trip <ArrowRight size={18} />
           </button>
         </div>
-        <div className="hero-visual animate-float">
+          <div className="hero-visual animate-float">
           <div className="hero-globe">🌍</div>
         </div>
       </div>
@@ -132,11 +133,9 @@ export default function Dashboard() {
                 <h4>{city.name}</h4>
                 <p>
                   {city.countryCode && (
-                    <img
-                      src={`https://flagcdn.com/16x12/${city.countryCode.toLowerCase()}.png`}
-                      alt=""
-                      className="rec-flag"
-                    />
+                    <span className="rec-flag-emoji" aria-hidden="true">
+                      {getFlagEmoji(city.countryCode)}
+                    </span>
                   )}
                   {city.country}
                 </p>
