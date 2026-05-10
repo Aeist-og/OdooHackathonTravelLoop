@@ -8,7 +8,9 @@
 2. Alternatively, use the GitHub repo you are viewing:
    - `https://github.com/Aeist-og/OdooHackathonTravelLoop`
 
-> **Next step (recommended for hackathons):** deploy to **Vercel / Netlify / GitHub Pages** so judges can access it immediately in a browser without setup.
+> **Deployed version** deploy to ** Netlify ** so judges can access it immediately in a browser without setup.
+
+
 
 ## How to run locally
 ### 1) Prerequisites
@@ -33,7 +35,7 @@ npm run build
 npm run preview
 ```
 
-## Project structure (high level)
+## Project structure 
 - `src/pages/` - route pages (Login, Signup, Dashboard, Itinerary, etc.)
 - `src/components/` - reusable UI components
 - `src/api/` - API helper modules
