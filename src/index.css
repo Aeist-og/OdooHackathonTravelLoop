@@ -114,10 +114,16 @@ body {
   position: relative;
 }
 
+/* Fix awkward viewport/scroll issues for hackathon viewing */
+html, body, #root { height: 100%; }
+
+
 /* Abstract Background Shapes */
 body::before {
   content: '';
   position: fixed;
+  transform: translateZ(0);
+
   top: 0;
   left: 0;
   width: 100%;

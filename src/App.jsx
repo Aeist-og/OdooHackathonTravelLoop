@@ -60,9 +60,10 @@ function AppLayout() {
   return (
     <ProtectedRoute>
       <div className="app-layout">
-        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-        <div className="main-content">
-          <Navbar onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
+        {/* Hackathon view: sidebar hidden by default to avoid layout/viewport issues */}
+        <div className="main-content no-sidebar">
+          <Navbar onToggleSidebar={() => {}} />
+
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/trips" element={<MyTrips />} />
@@ -94,3 +95,4 @@ export default function App() {
     </ThemeProvider>
   );
 }
+

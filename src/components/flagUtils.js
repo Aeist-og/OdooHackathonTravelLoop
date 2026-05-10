@@ -2,8 +2,9 @@ const COUNTRY_CODE_TO_EMOJI = {
   // Common hackathon/demo subset (extend as needed)
   IN: '🇮🇳',
   US: '🇺🇸',
-  GB: '🇬🇧',
-  UK: '🇬🇧',
+  GB: '',
+  UK: '',
+
   FR: '🇫🇷',
   DE: '🇩🇪',
   ES: '🇪🇸',
@@ -33,7 +34,8 @@ const COUNTRY_CODE_TO_EMOJI = {
   KR: '🇰🇷',
   TW: '🇹🇼',
   HK: '🇭🇰',
-  AE: '🇦🇪',
+  AE: '',
+
   SA: '🇸🇦',
   IL: '🇮🇱',
   EG: '🇪🇬',
