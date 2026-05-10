@@ -59,7 +59,7 @@ function AppLayout() {
 
   return (
     <ProtectedRoute>
-      <div className="app-layout">
+      <div className={`app-layout ${sidebarOpen ? 'sidebar-is-open' : ''}`}>
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
         <div className="main-content">
           <Navbar onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} />

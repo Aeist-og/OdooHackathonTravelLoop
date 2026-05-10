@@ -25,12 +25,12 @@
   --color-dark-text-secondary: #94A3B8;
 
   /* Glassmorphism */
-  --glass-light-light: rgba(255, 255, 255, 0.3);
-  --glass-light-lighter: rgba(255, 255, 255, 0.15);
-  --glass-dark-dark: rgba(30, 41, 59, 0.5);
-  --glass-dark-darker: rgba(15, 23, 42, 0.6);
-  --glass-border-light: rgba(255, 255, 255, 0.3);
-  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  --glass-light-light: rgba(255, 255, 255, 0.4);
+  --glass-light-lighter: rgba(255, 255, 255, 0.2);
+  --glass-dark-dark: rgba(15, 23, 42, 0.4);
+  --glass-dark-darker: rgba(11, 17, 32, 0.6);
+  --glass-border-light: rgba(255, 255, 255, 0.5);
+  --glass-border-dark: rgba(255, 255, 255, 0.08);
 
   /* Semantic Colors */
   --success: #10B981;
@@ -120,7 +120,10 @@ body {
 }
 
 /* Fix awkward viewport/scroll issues for hackathon viewing */
-html, body, #root { height: 100%; }
+html, body, #root { 
+  min-height: 100vh;
+  margin: 0;
+}
 
 
 /* Abstract Background Shapes */
@@ -298,10 +301,17 @@ p {
 
 .main-content {
   flex: 1;
-  margin-left: var(--sidebar-width);
+  margin-left: 0; /* Changed to 0 so it's full width, and sidebar floats or pushes conditionally */
   padding-top: var(--navbar-height);
   min-height: 100vh;
   transition: margin-left var(--transition-base);
+}
+
+/* When sidebar is open on desktop, push content */
+@media (min-width: 1025px) {
+  .app-layout.sidebar-is-open .main-content {
+    margin-left: var(--sidebar-width);
+  }
 }
 
 .main-content.no-sidebar {

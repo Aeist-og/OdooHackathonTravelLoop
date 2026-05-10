@@ -1,7 +1,7 @@
 .navbar {
   position: fixed;
   top: 0;
-  left: var(--sidebar-width);
+  left: 0;
   right: 0;
   height: var(--navbar-height);
   background: rgba(15, 23, 42, 0.8);
@@ -23,7 +23,13 @@
 }
 
 .menu-toggle {
-  display: none;
+  display: flex;
+}
+
+@media (min-width: 1025px) {
+  .app-layout.sidebar-is-open .navbar {
+    left: var(--sidebar-width);
+  }
 }
 
 .navbar-title {
