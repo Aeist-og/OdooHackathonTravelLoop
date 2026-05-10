@@ -32,7 +32,7 @@ export default function Sidebar({ isOpen, onClose }) {
               <Globe size={22} />
             </div>
             <span className="logo-text">
-              Libre<span className="logo-accent">Ruta</span>
+              Travel<span className="logo-accent">Loop</span>
             </span>
           </div>
         </div>

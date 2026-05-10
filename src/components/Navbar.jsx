@@ -20,7 +20,7 @@ export default function Navbar({ onToggleSidebar }) {
     if (path === '/search') return 'Explore Cities';
     if (path === '/activities') return 'Activities';
     if (path === '/profile') return 'Profile';
-    return 'LibreRuta';
+    return 'TravelLoop';
   };
 
   return (

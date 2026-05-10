@@ -53,7 +53,7 @@ export default function AdminDashboard() {
             <BarChart3 size={36} className="text-pastel-lavender" />
             Admin Dashboard
           </h1>
-          <p className="text-gray-400">LibreRuta Platform Analytics</p>
+          <p className="text-gray-400">TravelLoop Platform Analytics</p>
         </div>
 
         {/* Stats Grid */}
