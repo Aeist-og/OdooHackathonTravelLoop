@@ -81,7 +81,7 @@ export default function ItineraryBuilder() {
       name: activity.name,
       type: activity.type || activity.category,
       category: activity.category,
-      cost: 0,
+      cost: activity.estimatedCost || 0,
       duration: '',
       notes: '',
       address: activity.address,
@@ -274,10 +274,18 @@ export default function ItineraryBuilder() {
                       ) : (
                         <div className="activity-results">
                           {activityResults.map(act => (
-                            <button key={act.id} className="activity-result-item" onClick={() => handleAddActivityFromSearch(stop.id, act)}>
-                              <span>{getActivityEmoji(act.type)}</span>
-                              <span className="activity-result-name">{act.name}</span>
-                              <Plus size={14} />
+                            <button key={act.id} className="activity-result-item" onClick={() => handleAddActivityFromSearch(stop.id, act)}
+                              style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                              <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: '8px' }}>
+                                <span>{getActivityEmoji(act.type)}</span>
+                                <span className="activity-result-name" style={{ flex: 1, textAlign: 'left' }}>{act.name}</span>
+                                <Plus size={14} style={{ color: 'var(--primary)' }} />
+                              </div>
+                              {act.costDescription && (
+                                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '4px', paddingLeft: '28px' }}>
+                                  💰 {act.costDescription}
+                                </div>
+                              )}
                             </button>
                           ))}
                           {activityResults.length === 0 && <p className="no-results">No activities found nearby. Try a different category.</p>}

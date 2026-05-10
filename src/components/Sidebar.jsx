@@ -14,6 +14,7 @@ const navItems = [
 ];
 
 const secondaryItems = [
+  { path: '/budgets', icon: DollarSign, label: 'Trip Budgets' },
   { path: '/packing', icon: Package, label: 'Packing Lists' },
   { path: '/notes', icon: StickyNote, label: 'Trip Notes' },
 ];

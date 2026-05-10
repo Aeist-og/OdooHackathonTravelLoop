@@ -73,6 +73,7 @@ function AppLayout() {
             <Route path="/search" element={<CitySearch />} />
             <Route path="/activities" element={<ActivitySearch />} />
             <Route path="/budget/:tripId" element={<TripBudget />} />
+            <Route path="/budgets" element={<TripBudget />} />
             <Route path="/packing" element={<PackingChecklist />} />
             <Route path="/notes" element={<TripNotes />} />
             <Route path="/profile" element={<UserProfile />} />

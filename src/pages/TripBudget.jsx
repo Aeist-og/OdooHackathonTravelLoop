@@ -7,19 +7,25 @@ import { DollarSign, Plus, Trash2, ArrowLeft, PieChart, BarChart3 } from 'lucide
 const CATEGORIES = ['transport', 'accommodation', 'food', 'activities', 'shopping', 'other'];
 
 export default function TripBudget() {
-  const { tripId } = useParams();
+  const { tripId: paramTripId } = useParams();
   const navigate = useNavigate();
-  const { getTrip, updateBudget } = useTrips();
-  const trip = getTrip(tripId);
+  const { trips, getTrip, updateBudget } = useTrips();
+  
+  const [selectedTripId, setSelectedTripId] = useState(paramTripId || (trips.length > 0 ? trips[0].id : ''));
+  const activeTripId = paramTripId || selectedTripId;
+  
+  const trip = getTrip(activeTripId);
   const [chartType, setChartType] = useState('pie');
   const [newItem, setNewItem] = useState({ name: '', amount: '', category: 'food' });
 
   if (!trip) {
     return (
+    return (
       <div className="page-container">
         <div className="empty-state">
-          <h3>Trip not found</h3>
-          <button className="btn btn-primary" onClick={() => navigate('/trips')}>Back to Trips</button>
+          <h3>No trips available</h3>
+          <p>You need to create a trip before tracking a budget.</p>
+          <button className="btn btn-primary" onClick={() => navigate('/create-trip')}>Create Trip</button>
         </div>
       </div>
     );
@@ -28,19 +34,19 @@ export default function TripBudget() {
   const budget = trip.budget || { currency: 'USD', limit: 1000, items: [] };
 
   const handleUpdateLimit = (e) => {
-    updateBudget(tripId, { ...budget, limit: parseFloat(e.target.value) || 0 });
+    updateBudget(activeTripId, { ...budget, limit: parseFloat(e.target.value) || 0 });
   };
 
   const handleAddItem = () => {
     if (!newItem.name.trim() || !newItem.amount) return;
     const items = [...(budget.items || []), { ...newItem, id: 'bi_' + Date.now(), amount: parseFloat(newItem.amount) }];
-    updateBudget(tripId, { ...budget, items });
+    updateBudget(activeTripId, { ...budget, items });
     setNewItem({ name: '', amount: '', category: 'food' });
   };
 
   const handleDeleteItem = (itemId) => {
     const items = (budget.items || []).filter(i => i.id !== itemId);
-    updateBudget(tripId, { ...budget, items });
+    updateBudget(activeTripId, { ...budget, items });
   };
 
   const total = (budget.items || []).reduce((a, i) => a + (i.amount || 0), 0);
@@ -54,9 +60,17 @@ export default function TripBudget() {
 
   return (
     <div className="page-container">
-      <button className="btn btn-ghost" onClick={() => navigate(`/itinerary/${tripId}`)} style={{ marginBottom: 'var(--space-md)' }}>
-        <ArrowLeft size={16} /> Back to Trip
-      </button>
+      {paramTripId ? (
+        <button className="btn btn-ghost" onClick={() => navigate(`/itinerary/${activeTripId}`)} style={{ marginBottom: 'var(--space-md)' }}>
+          <ArrowLeft size={16} /> Back to Trip
+        </button>
+      ) : (
+        <div style={{ marginBottom: 'var(--space-xl)' }}>
+          <select className="form-input" value={selectedTripId} onChange={e => setSelectedTripId(e.target.value)} style={{ maxWidth: 300 }}>
+            {trips.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
+          </select>
+        </div>
+      )}
 
       <div className="page-header">
         <h1>💰 Real-Time Budget</h1>
