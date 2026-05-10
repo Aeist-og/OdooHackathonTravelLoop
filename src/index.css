@@ -76,6 +76,11 @@
   --text-secondary: #6B7280;
   --glass: var(--glass-light-light);
   --glass-border: var(--glass-border-light);
+
+  /* Layout vars (desktop) */
+  --sidebar-width: 280px;
+  --navbar-height: 64px;
+  --content-max-width: 1200px;
 }
 
 /* ---------- Dark Mode ---------- */
@@ -829,8 +834,10 @@ select.form-input {
 }
 
 @media (max-width: 768px) {
+  /* On mobile, sidebar is off-canvas via transforms (Sidebar.css).
+     Keep main content aligned and let the sidebar overlay slide in/out. */
   :root {
-    --sidebar-width: 0px;
+    --sidebar-width: 280px;
   }
 
   .main-content {
