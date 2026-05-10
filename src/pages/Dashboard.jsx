@@ -62,8 +62,11 @@ export default function Dashboard() {
             <PlusCircle size={18} /> Plan New Trip <ArrowRight size={18} />
           </button>
         </div>
-          <div className="hero-visual animate-float">
-          <div className="hero-globe">🌍</div>
+        <div className="hero-visual animate-float">
+          <div className="hero-globe-abstract">
+            <div className="globe-layer layer-1"><Compass size={80} strokeWidth={1} /></div>
+            <div className="globe-layer layer-2"><Map size={100} strokeWidth={1} /></div>
+          </div>
         </div>
       </div>
 

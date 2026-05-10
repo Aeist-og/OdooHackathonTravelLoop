@@ -6,8 +6,11 @@
 
 .trip-card-image {
   position: relative;
-  height: 180px;
+  height: 200px;
+  margin: 12px;
+  border-radius: var(--radius-md);
   overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .trip-card-image img {
@@ -24,11 +27,11 @@
 .trip-card-overlay {
   position: absolute;
   top: var(--space-sm);
-  right: var(--space-sm);
+  left: var(--space-sm);
 }
 
 .trip-card-body {
-  padding: var(--space-lg);
+  padding: 0 var(--space-lg) var(--space-lg) var(--space-lg);
 }
 
 .trip-card-title {
@@ -81,6 +84,7 @@
 
 .trip-card-actions .btn:last-child {
   flex: 0;
+  min-width: 40px;
   color: var(--text-muted);
 }
 
