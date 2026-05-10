@@ -20,7 +20,6 @@ export default function TripBudget() {
 
   if (!trip) {
     return (
-    return (
       <div className="page-container">
         <div className="empty-state">
           <h3>No trips available</h3>
