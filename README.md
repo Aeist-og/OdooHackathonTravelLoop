@@ -10,7 +10,7 @@
 
 > **Deployed version** deploy to ** Netlify ** so judges can access it immediately in a browser without setup.
 
-
+here is the link :  `https://6a0059b376586000086fb274--melodious-phoenix-908646.netlify.app/`
 
 ## How to run locally
 ### 1) Prerequisites
