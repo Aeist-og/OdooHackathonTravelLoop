@@ -1,0 +1,41 @@
+.budget-chart-container {
+  text-align: center;
+}
+
+.budget-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.budget-total-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.budget-total-value {
+  font-size: 2rem;
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.budget-total-currency {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.budget-chart-wrapper {
+  height: 280px;
+  position: relative;
+}
+
+.budget-chart-empty {
+  padding: var(--space-2xl);
+  text-align: center;
+  color: var(--text-muted);
+}

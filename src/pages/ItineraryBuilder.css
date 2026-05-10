@@ -1,0 +1,247 @@
+.builder-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.builder-header h1 {
+  margin-bottom: 2px;
+}
+
+.builder-add-city {
+  margin-bottom: var(--space-xl);
+}
+
+.builder-add-city h4 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.suggestion-add {
+  color: var(--primary);
+  margin-left: auto;
+}
+
+/* Stops */
+.builder-stops {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.builder-stop {
+  transition: all var(--transition-base);
+}
+
+.builder-stop.expanded {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.stop-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  cursor: pointer;
+  padding: var(--space-sm) 0;
+}
+
+.stop-drag {
+  color: var(--text-muted);
+  cursor: grab;
+  padding: 4px;
+}
+
+.stop-drag:active {
+  cursor: grabbing;
+}
+
+.stop-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.stop-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.stop-info h4 {
+  font-size: 1.05rem;
+}
+
+.stop-country {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.stop-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.stop-expanded {
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--glass-border-light);
+  margin-top: var(--space-sm);
+}
+
+.stop-dates {
+  margin-bottom: var(--space-md);
+}
+
+.stop-activities {
+  margin-bottom: var(--space-md);
+}
+
+.stop-activities h5 {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.stop-activity-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 8px 12px;
+  background: var(--glass);
+  border-radius: var(--radius-sm);
+  margin-bottom: 4px;
+  font-size: 0.85rem;
+}
+
+.activity-emoji {
+  font-size: 1rem;
+}
+
+.activity-label {
+  flex: 1;
+  color: var(--text-secondary);
+}
+
+.activity-cost {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 0.82rem;
+}
+
+/* Add Activity */
+.add-activity-section {
+  margin-top: var(--space-md);
+}
+
+.add-activity-tabs {
+  display: flex;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+
+.add-activity-tabs .tab {
+  flex: 0 0 auto;
+  padding: 8px 16px;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.activity-type-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: var(--space-md);
+}
+
+.filter-chip {
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  transition: all var(--transition-fast);
+}
+
+.filter-chip:hover {
+  background: var(--surface-light);
+  color: var(--text-primary);
+}
+
+.filter-chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.activity-results {
+  max-height: 250px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.activity-result-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 10px 12px;
+  background: var(--glass);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  transition: all var(--transition-fast);
+}
+
+.activity-result-item:hover {
+  background: var(--glass-medium);
+}
+
+.activity-result-name {
+  flex: 1;
+}
+
+.no-results {
+  text-align: center;
+  padding: var(--space-lg);
+  font-size: 0.85rem;
+  color: var(--text-muted) !important;
+}
+
+.loading-center {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-xl);
+}
+
+.custom-activity-form {
+  padding: var(--space-md);
+  background: var(--glass);
+  border-radius: var(--radius-md);
+}
+
+.custom-activity-form .form-group {
+  margin-bottom: var(--space-sm);
+}
+
+@media (max-width: 768px) {
+  .builder-header {
+    flex-direction: column;
+  }
+}
