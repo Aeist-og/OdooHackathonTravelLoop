@@ -3,25 +3,12 @@
 **Traveloop** is a smart trip planner that helps users plan, organize, and share itineraries with live city data and budget tracking.
 
 ## Hackathon Demo / How judges can access
-1. Open the deployed project URL (recommended):
-   - If you don’t have a live deployment yet, judges can still run the project locally (steps below).
+1. Open the deployed project URL :
+   - I don’t have a live deployment yet, judges can still run the project locally (steps below).
 2. Alternatively, use the GitHub repo you are viewing:
    - `https://github.com/Aeist-og/OdooHackathonTravelLoop`
 
 > **Next step (recommended for hackathons):** deploy to **Vercel / Netlify / GitHub Pages** so judges can access it immediately in a browser without setup.
-
-## Features
-- Create and manage trips
-- Build itineraries
-- Budget tracking
-- City/activities browsing and itinerary sharing
-- Admin dashboard and user authentication
-
-## Tech stack
-- React + Vite
-- React Router
-- Tailwind CSS
-- Chart.js
 
 ## How to run locally
 ### 1) Prerequisites
@@ -52,6 +39,19 @@ npm run preview
 - `src/api/` - API helper modules
 - `src/context/` - React contexts (auth/theme/trips)
 
+## Features
+- Create and manage trips
+- Build itineraries
+- Budget tracking
+- City/activities browsing and itinerary sharing
+- Admin dashboard and user authentication
+
+## Tech stack
+- React + Vite
+- React Router
+- Tailwind CSS
+- Chart.js
+
 ## Deployment (recommended)
 ### Vercel / Netlify (SPA)
 These platforms will build Vite automatically.
@@ -59,7 +59,4 @@ These platforms will build Vite automatically.
 - Output directory: `dist`
 
 If using a platform that needs routing rules for React Router, enable SPA fallback (rewrites to `index.html`).
-
-## Notes
-- Ensure `.env` variables (if any) are configured in your deployment environment.
 
