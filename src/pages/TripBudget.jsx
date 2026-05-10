@@ -25,7 +25,11 @@ export default function TripBudget() {
     );
   }
 
-  const budget = trip.budget || { currency: 'USD', items: [] };
+  const budget = trip.budget || { currency: 'USD', limit: 1000, items: [] };
+
+  const handleUpdateLimit = (e) => {
+    updateBudget(tripId, { ...budget, limit: parseFloat(e.target.value) || 0 });
+  };
 
   const handleAddItem = () => {
     if (!newItem.name.trim() || !newItem.amount) return;
@@ -42,6 +46,11 @@ export default function TripBudget() {
   const total = (budget.items || []).reduce((a, i) => a + (i.amount || 0), 0);
   const activityCosts = (trip.stops || []).reduce((acc, s) =>
     acc + (s.activities || []).reduce((a, act) => a + (act.cost || 0), 0), 0);
+  
+  const grandTotal = total + activityCosts;
+  const limit = budget.limit || 0;
+  const progressPercent = limit > 0 ? Math.min(100, Math.round((grandTotal / limit) * 100)) : 0;
+  const isOverBudget = grandTotal > limit;
 
   return (
     <div className="page-container">
@@ -50,8 +59,43 @@ export default function TripBudget() {
       </button>
 
       <div className="page-header">
-        <h1>💰 Trip Budget</h1>
-        <p>{trip.name} — Track your expenses and plan your spending.</p>
+        <h1>💰 Real-Time Budget</h1>
+        <p>{trip.name} — Track your expenses and monitor your limit.</p>
+      </div>
+
+      {/* Budget Limit Tracker */}
+      <div className="glass-card-static" style={{ marginBottom: 'var(--space-xl)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-md)' }}>
+          <div>
+            <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Total Spent</span>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: isOverBudget ? 'var(--danger)' : 'var(--text-primary)' }}>
+              ${grandTotal.toFixed(2)}
+            </div>
+          </div>
+          <div style={{ textAlign: 'right' }}>
+            <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', display: 'block', marginBottom: '4px' }}>Budget Limit</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ fontWeight: 600 }}>$</span>
+              <input type="number" className="form-input" value={limit} onChange={handleUpdateLimit}
+                style={{ width: '120px', padding: '6px 10px' }} />
+            </div>
+          </div>
+        </div>
+        
+        {/* Progress Bar */}
+        <div style={{ height: 12, background: 'var(--surface-lighter)', borderRadius: 'var(--radius-full)', overflow: 'hidden' }}>
+          <div style={{ 
+            height: '100%', 
+            width: `${progressPercent}%`, 
+            background: isOverBudget ? 'var(--danger)' : 'var(--success)', 
+            borderRadius: 'var(--radius-full)',
+            transition: 'width var(--transition-base), background var(--transition-base)' 
+          }} />
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 'var(--space-sm)', fontSize: '0.8rem', color: isOverBudget ? 'var(--danger)' : 'var(--text-secondary)' }}>
+          <span>{progressPercent}% spent</span>
+          <span>{isOverBudget ? `Over budget by $${(grandTotal - limit).toFixed(2)}` : `$${(limit - grandTotal).toFixed(2)} remaining`}</span>
+        </div>
       </div>
 
       <div className="grid grid-2" style={{ alignItems: 'start' }}>
@@ -106,8 +150,8 @@ export default function TripBudget() {
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 'var(--space-md)', paddingTop: 'var(--space-md)',
             borderTop: '1px solid var(--glass-border)' }}>
             <span style={{ fontWeight: 600, color: 'var(--text-secondary)' }}>Grand Total</span>
-            <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary-light)' }}>
-              ${(total + activityCosts).toFixed(2)}
+            <span style={{ fontSize: '1.25rem', fontWeight: 800, color: isOverBudget ? 'var(--danger)' : 'var(--primary-light)' }}>
+              ${grandTotal.toFixed(2)}
             </span>
           </div>
         </div>

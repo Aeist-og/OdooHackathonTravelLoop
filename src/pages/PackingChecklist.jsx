@@ -116,10 +116,10 @@ export default function PackingChecklist() {
                 <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px 0',
                   borderBottom: '1px solid var(--glass-border-light)' }}>
                   <button onClick={() => handleToggle(item.id)}
-                    style={{ width: 24, height: 24, borderRadius: 6, border: `2px solid ${item.checked ? 'var(--success)' : 'var(--surface-lighter)'}`,
-                      background: item.checked ? 'var(--success)' : 'transparent', display: 'flex', alignItems: 'center',
+                    style={{ width: 24, height: 24, borderRadius: 6, border: `2px solid ${item.checked ? 'var(--success)' : 'var(--text-muted)'}`,
+                      background: item.checked ? 'var(--success)' : 'var(--surface-light)', display: 'flex', alignItems: 'center',
                       justifyContent: 'center', cursor: 'pointer', flexShrink: 0, transition: 'all var(--transition-fast)' }}>
-                    {item.checked && <Check size={14} color="white" />}
+                    {item.checked && <Check size={16} color="white" strokeWidth={3} />}
                   </button>
                   <span style={{ flex: 1, fontSize: '0.9rem', textDecoration: item.checked ? 'line-through' : 'none',
                     color: item.checked ? 'var(--text-muted)' : 'var(--text-primary)', transition: 'all var(--transition-fast)' }}>

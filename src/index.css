@@ -25,11 +25,11 @@
   --color-dark-text-secondary: #94A3B8;
 
   /* Glassmorphism */
-  --glass-light-light: rgba(255, 255, 255, 0.4);
-  --glass-light-lighter: rgba(255, 255, 255, 0.2);
+  --glass-light-light: rgba(255, 255, 255, 0.6);
+  --glass-light-lighter: rgba(255, 255, 255, 0.3);
   --glass-dark-dark: rgba(15, 23, 42, 0.4);
   --glass-dark-darker: rgba(11, 17, 32, 0.6);
-  --glass-border-light: rgba(255, 255, 255, 0.5);
+  --glass-border-light: rgba(255, 255, 255, 0.7);
   --glass-border-dark: rgba(255, 255, 255, 0.08);
 
   /* Semantic Colors */
@@ -70,12 +70,16 @@
 :root:not(.dark) {
   --primary: #A8E6CF;
   --accent: #FFB8A3;
-  --background: #FAFAFA;
-  --surface: #FFFFFF;
-  --text-primary: #2D2D2D;
-  --text-secondary: #6B7280;
+  --background: #F3F4F6;
+  --surface: rgba(255, 255, 255, 0.8);
+  --surface-light: rgba(255, 255, 255, 0.95);
+  --surface-lighter: #E5E7EB;
+  --text-primary: #1F2937;
+  --text-secondary: #4B5563;
+  --text-muted: #9CA3AF;
   --glass: var(--glass-light-light);
   --glass-border: var(--glass-border-light);
+  --primary-glow: rgba(168, 230, 207, 0.4);
 
   /* Layout vars (desktop) */
   --sidebar-width: 280px;
@@ -131,17 +135,14 @@ body::before {
   content: '';
   position: fixed;
   transform: translateZ(0);
-
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, 
-    rgba(168, 230, 207, 0.1) 0%, 
-    rgba(180, 215, 255, 0.05) 25%,
-    rgba(196, 181, 253, 0.05) 50%,
-    rgba(255, 184, 163, 0.1) 75%,
-    rgba(255, 158, 186, 0.05) 100%);
+  background: radial-gradient(at 0% 0%, rgba(168, 230, 207, 0.15) 0px, transparent 50%),
+              radial-gradient(at 100% 0%, rgba(180, 215, 255, 0.15) 0px, transparent 50%),
+              radial-gradient(at 100% 100%, rgba(255, 184, 163, 0.15) 0px, transparent 50%),
+              radial-gradient(at 0% 100%, rgba(196, 181, 253, 0.15) 0px, transparent 50%);
   pointer-events: none;
   z-index: -2;
 }
