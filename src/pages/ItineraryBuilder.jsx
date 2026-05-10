@@ -25,7 +25,7 @@ export default function ItineraryBuilder() {
   const [activityResults, setActivityResults] = useState([]);
   const [loadingActivities, setLoadingActivities] = useState(false);
   const [showAddActivity, setShowAddActivity] = useState(null);
-  const [customActivity, setCustomActivity] = useState({ name: '', type: 'sightseeing', cost: '', duration: '', notes: '' });
+  const [customActivity, setCustomActivity] = useState({ name: '', type: 'sightseeing', cost: '', duration: '', notes: '', startTime: '', location: '' });
   const [dragIndex, setDragIndex] = useState(null);
 
   const debounce = (fn, ms) => {
@@ -97,7 +97,7 @@ export default function ItineraryBuilder() {
       ...customActivity,
       cost: parseFloat(customActivity.cost) || 0,
     });
-    setCustomActivity({ name: '', type: 'sightseeing', cost: '', duration: '', notes: '' });
+    setCustomActivity({ name: '', type: 'sightseeing', cost: '', duration: '', notes: '', startTime: '', location: '' });
   };
 
   const handleDragStart = (idx) => setDragIndex(idx);
@@ -205,17 +205,37 @@ export default function ItineraryBuilder() {
                 {/* Existing Activities */}
                 {stop.activities?.length > 0 && (
                   <div className="stop-activities">
-                    <h5>Activities</h5>
-                    {stop.activities.map(act => (
-                      <div key={act.id} className="stop-activity-item">
-                        <span className="activity-emoji">{getActivityEmoji(act.type)}</span>
-                        <span className="activity-label">{act.name}</span>
-                        {act.cost > 0 && <span className="activity-cost">${act.cost}</span>}
-                        <button className="btn btn-ghost btn-icon btn-sm" onClick={() => deleteActivity(tripId, stop.id, act.id)}>
-                          <X size={12} />
-                        </button>
-                      </div>
-                    ))}
+                    <h5>Activities Timeline</h5>
+                    <div className="timeline-container">
+                      {stop.activities.map(act => (
+                        <div key={act.id} className="timeline-item">
+                          <div className="timeline-dot" />
+                          <div className="timeline-header">
+                            <div className="timeline-title-group">
+                              <span className="activity-emoji">{getActivityEmoji(act.type)}</span>
+                              <span>{act.name}</span>
+                            </div>
+                            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                              {act.startTime && <span className="timeline-time">{act.startTime}</span>}
+                              <button className="btn btn-ghost btn-icon btn-sm" onClick={() => deleteActivity(tripId, stop.id, act.id)}>
+                                <X size={14} />
+                              </button>
+                            </div>
+                          </div>
+                          
+                          {(act.location || act.address || act.cost > 0) && (
+                            <div className="timeline-details">
+                              {(act.location || act.address) && (
+                                <span className="timeline-detail-item"><MapPin size={12} /> {act.location || act.address}</span>
+                              )}
+                              {act.cost > 0 && (
+                                <span className="timeline-detail-item"><DollarSign size={12} /> <span className="activity-cost">${act.cost}</span></span>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
 
@@ -280,6 +300,16 @@ export default function ItineraryBuilder() {
                               <option key={at.value} value={at.value}>{at.emoji} {at.label}</option>
                             ))}
                           </select>
+                        </div>
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group">
+                          <input type="text" className="form-input" placeholder="Location/Address" value={customActivity.location}
+                            onChange={e => setCustomActivity({ ...customActivity, location: e.target.value })} />
+                        </div>
+                        <div className="form-group">
+                          <input type="time" className="form-input" value={customActivity.startTime}
+                            onChange={e => setCustomActivity({ ...customActivity, startTime: e.target.value })} />
                         </div>
                       </div>
                       <div className="form-row">
